@@ -1,0 +1,23 @@
+---
+layout: default
+---
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">{{ page.title }}</h1>
+    <p class="post-meta"><time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%b %-d, %Y" }}</time>{% if page.author %} • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ page.author }}</span></span>{% endif %}</p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    {% if page.image %}<img src="{{page.image}}">{% endif %}
+    {{ content }}
+  </div>
+
+</article>
+
+{% assign writer = site.data.people[page.author] %}
+<div class="author">
+  About the author: {{writer.title}}
+  <div class="author-img"><img src="{{ writer.image-url }}"></div>
+  <div class="biography">{{ writer.description }}</div>
+</div>
